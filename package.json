@@ -1,0 +1,33 @@
+{
+  "name": "permeator-core",
+  "version": "1.0.0",
+  "description": "用于封装 API 使得各平台使用方式一致.",
+  "main": "lib/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BoltDoggy/permeator-core.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BoltDoggy/permeator-core/issues"
+  },
+  "homepage": "https://github.com/BoltDoggy/permeator-core#readme",
+  "dependencies": {
+    "debug": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.2",
+    "@types/jest": "^24.0.11",
+    "jest": "^24.4.0",
+    "jest-puppeteer": "^4.0.0",
+    "ts-jest": "^24.0.0",
+    "typescript": "^3.3.3333"
+  }
+}
