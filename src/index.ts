@@ -1,5 +1,5 @@
 import { dynamicLoadJs, firstUpperCase, log } from './util';
-import { Platform } from '../types/index.d';
+import Platform from './Platform';
 
 class PermeatorCore {
     _interfaceList = [];
