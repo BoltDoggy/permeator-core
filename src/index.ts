@@ -9,6 +9,7 @@ class PermeatorCore {
 
     _name = 'unnamed PermeatorCore';
     _config: any = {};
+    _globalData: any = null;
 
     _rollBack: Function;
     rollBack: Function;
@@ -170,11 +171,11 @@ class PermeatorCore {
         await Promise.all(loadings);
 
         if (this._config.beforeReady) {
-            this._config.beforeReady();
+            this._globalData = await this._config.beforeReady();
             this._config.beforeReady = null;
         }
 
-        return callback();
+        return callback(this._globalData);
     }
 
     // 注册 getEnv 方法
