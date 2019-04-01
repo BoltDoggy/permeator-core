@@ -124,11 +124,11 @@ class PermeatorCore {
                     if (res) {
                         // 当前平台情况下, 注册 PermeatorCore 方法
                         if (this._platformInNow) {
-                            this._config.logger(`${this._name}: 所在平台值 ${this._platformInNow} 被重置为 ${platform.name}`);
+                            this._config.logger(`${this._name}: 所在平台值 ${this._platformInNow.name} 被重置为 ${platform.name}`);
                         } else {
                             this._config.logger(`${this._name}: 检测到所在平台值为 ${platform.name}`);
                         }
-                        this._platformInNow = platform.name;
+                        this._platformInNow = platform;
 
                         this[`is${platform._Name}`] = () => true;
 
@@ -160,7 +160,9 @@ class PermeatorCore {
                 // 设置当前平台回调
                 this[`in${platform._Name}`] = (_callback:Function) => {
                     return platform._loading.then(() => {
-                        return _callback(this[platform.globalVar]);
+                        if (this[`is${platform._Name}`]()) {
+                            return _callback(this[platform.globalVar]);
+                        }
                     })
                 };
             });
@@ -182,7 +184,7 @@ class PermeatorCore {
     getEnv(_callback: Function) {
         return this.ready(() => {
             return _callback({
-                platform: this._platformInNow,
+                platform: this._platformInNow && this._platformInNow.name,
             });
         });
     }
